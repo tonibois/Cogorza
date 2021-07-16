@@ -52,7 +52,7 @@
 	tabs= 20*60.
 	
 	!Caracteristicas de las consumiciones : v (volumen bebida) , g (graduacion) 
-    !ti (tiempo de toma desde inicio simulacion), tf (tiempo en que el sujeto termina de beber)
+        !ti (tiempo de toma desde inicio simulacion), tf (tiempo en que el sujeto termina de beber)
 	!tesp (tiempo de espera despues de la bebida i), tconsum (tiempo de consumo, igual a tf - ti)
 	
 	v(1) = lata
@@ -128,8 +128,7 @@
 	end if 
 	
 	if(a.le.0.) a=0.
-	
-    if(mod(i,1000).eq.0)  print*, t,a,b
+        if(mod(i,1000).eq.0)  print*, t,a,b
 	if(mod(i,100).eq.0)  write(5,'(f7.2,a,f9.4,a,f9.4)')t/60,",",a,",",b
 	!if(mod(i,100).eq.0)  read(*,*)
 	b=0
