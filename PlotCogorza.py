@@ -7,7 +7,7 @@ from scipy.ndimage import gaussian_filter1d
 at=pd.read_csv('BAC.csv')
 
 y=at['in_blood_alcohol']
-y_smoothed = gaussian_filter1d(y, sigma=5)
+y_smoothed = gaussian_filter1d(y, sigma=50)
 
 plt.figure(figsize = (15, 8))
 plt.xlabel("Tiempo (min)")
@@ -16,7 +16,7 @@ plt.title("Simulacion del alcohol en sangre (g/L)")
 
 plt.plot(at['time'], y_smoothed,color='black',label='simulacion suavizada')
 plt.plot(at['time'],at['in_blood_alcohol'], color='black', linestyle = '--', label='simulacion original')
-plt.plot(at['time'],at['input_alcohol']*1000, color='grey',label='consumiciones')
+plt.plot(at['time'],at['input_alcohol'], color='grey',label='consumiciones')
 plt.xlim(0,at.loc[at.index[-1], 'time'])
 plt.axhline(y = 0.3, color = 'blue', linestyle = '-',label = "Zona sin riesgo")
 plt.fill_between(at['time'], 0.3, color='blue', alpha=0.25)
@@ -35,5 +35,5 @@ plt.fill_between(at['time'], 3.0, 5.0, color='red', alpha=0.25)
 
 plt.ylim(0,np.max(y)+0.05)
 plt.legend()
-plt.savefig("Cogorza_6cons.png",dpi=200)
+plt.savefig("Cogorza_12cons.png",dpi=200)
 plt.show()
