@@ -75,12 +75,10 @@
 	ti(3) = tf(2)+tesp(2)
 	tf(3) = tf(2)+tesp(2)+30.*60.
 	tesp(3) = 35.
-	tesp(3) = tesp(3) * 60.
-	
+	tesp(3) = tesp(3) * 60.	
 	
 	a=a0
 	t=t0
-
 	
 	do i=1,tfinal
 
@@ -115,6 +113,5 @@
 	b=0
 	enddo
 	
-	close(5)
-	
+	close(5)	
 	END
