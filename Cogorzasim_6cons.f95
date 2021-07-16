@@ -52,55 +52,54 @@
 	tabs= 20*60.
 	
 	!Caracteristicas de las consumiciones : v (volumen bebida) , g (graduacion) 
-        !ti (tiempo de toma desde inicio simulacion), tf (tiempo en que el sujeto termina de beber)
+    !ti (tiempo de toma desde inicio simulacion), tf (tiempo en que el sujeto termina de beber)
 	!tesp (tiempo de espera despues de la bebida i), tconsum (tiempo de consumo, igual a tf - ti)
 	
 	v(1) = lata
 	g(1) = cerveza
 	ti(1) = 0.
-	tf(1) = 20.
-	tf(1) = tf(1)*60.
+	tf(1) = 20.*60
 	tesp(1) = 5.
 	tesp(1) = tesp(1) * 60.
 	
 	v(2) = lata
 	g(2) = cerveza
 	ti(2) = tf(1)+tesp(1)
-	tf(2) = tf(1)+tesp(1)+50.*60.
+	tf(2) = tI(2)+50.*60.
 	tesp(2) = 15.
 	tesp(2) = tesp(2) * 60.
 	
 	v(3) = lata
 	g(3) = cerveza
 	ti(3) = tf(2)+tesp(2)
-	tf(3) = tf(2)+tesp(2)+30.*60.
+	tf(3) = ti(3)+30.*60.
 	tesp(3) = 35.
 	tesp(3) = tesp(3) * 60.
 
 	v(4) = lata
 	g(4) = cerveza
 	ti(4) = tf(3)+tesp(3)
-	tf(4) = tf(3)+tesp(3)+50.*60.
+	tf(4) = ti(4)+50.*60.
 	tesp(4) = 15.
 	tesp(4) = tesp(4) * 60.
 	
 	v(5) = copa
 	g(5) = vino
 	ti(5) = tf(4)+tesp(4)
-	tf(5) = tf(4)+tesp(4)+50.*60.
+	tf(5) = ti(5)+50.*60.
 	tesp(5) = 15.
 	tesp(5) = tesp(5) * 60.
 	
-	v(6) = whisky
-	g(6) = medio_vaso
+	v(6) = medio_vaso
+	g(6) = whisky
 	ti(6) = tf(5)+tesp(5)
-	tf(6) = tf(5)+tesp(5)+10.*60.
+	tf(6) = ti(6)+10.*60.
 	tesp(6) = 35.
 	tesp(6) = tesp(6) * 60.
 	
 	a=a0
 	t=t0
-
+    b=0.
 	
 	do i=1,tfinal
 
@@ -116,7 +115,7 @@
 			st2=1.
 			if(t-ti(j).lt.0.) st1 = 0.
 			if(t-tf(j).lt.0.) st2 = 0.	
-			b=b+D*V(j)*g(j)*Cabsor/(Cs*M*(tf(j)-ti(j)))*(st1-st2)*dt
+			b=b+D*V(j)*g(j)*Cabsor*2000/(Cs*M*(tf(j)-ti(j)))*(st1-st2)*dt
 		enddo
 		
 	t=t+dt
@@ -128,8 +127,9 @@
 	end if 
 	
 	if(a.le.0.) a=0.
-        if(mod(i,1000).eq.0)  print*, t,a,b
-	if(mod(i,100).eq.0)  write(5,'(f7.2,a,f9.4,a,f9.4)')t/60,",",a,",",b
+	
+    if(mod(i,1000).eq.0)  print*, t,a,b
+	if(mod(i,10).eq.0)  write(5,'(f7.2,a,f9.4,a,f9.4)')t/60,",",a,",",b
 	!if(mod(i,100).eq.0)  read(*,*)
 	b=0
 	enddo
