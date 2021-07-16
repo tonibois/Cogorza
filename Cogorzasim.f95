@@ -1,4 +1,4 @@
-  PROGRAM COGORZASIM
+  	PROGRAM COGORZASIM
 	double precision t,a,D,R,M,V(20),g(20),tf(20),ti(20),st1,st2,dt,tabs,tesp(20),a0,t0,Cs,hsim
 	double precision lata,botella,botellin,cerveza,copa,martini,vino,absenta,whisky,medio_vaso,litro
 	integer i,tfinal,N,j
@@ -52,7 +52,7 @@
 	tabs= 20*60.
 	
 	!Caracteristicas de las consumiciones : v (volumen bebida) , g (graduacion) 
-    !ti (tiempo de toma desde inicio simulacion), tf (tiempo en que el sujeto termina de beber)
+   	!ti (tiempo de toma desde inicio simulacion), tf (tiempo en que el sujeto termina de beber)
 	!tesp (tiempo de espera despues de la bebida i), tconsum (tiempo de consumo, igual a tf - ti)
 	
 	v(1) = lata
@@ -89,8 +89,7 @@
 			if(t-ti(j)-tabs.lt.0.) st1=  0.
 			if(t-tf(j)-tabs.lt.0.) st2 = 0.		
 			a=a+D*V(j)*g(j)*Cabsor/(Cs*M*(tf(j)-ti(j)))*(st1-st2)*dt
-		enddo
-	
+		enddo	
     
 	t=t+dt
 	
@@ -101,10 +100,8 @@
 	end if 
 	
 	if(a.le.0.) a=0.
-	
-    if(mod(i,100).eq.0)  print*, t,a
+  	if(mod(i,100).eq.0)  print*, t,a
 	if(mod(i,100).eq.0)  write(5,'(f7.2,a,f9.4)')t,",",a
-	!if(mod(i,100).eq.0)  read(*,*)
 	
 	enddo
 	
