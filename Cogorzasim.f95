@@ -1,11 +1,11 @@
-  	PROGRAM COGORZASIM
+	PROGRAM COGORZASIM
 	double precision t,a,D,R,M,V(20),g(20),tf(20),ti(20),st1,st2,dt,tabs,tesp(20),a0,t0,Cs,hsim
-	double precision lata,botella,botellin,cerveza,copa,martini,vino,absenta,whisky,medio_vaso,litro
+	double precision lata,botella,botellin,cerveza,copa,martini,vino,absenta,whisky,medio_vaso,litro,b
 	integer i,tfinal,N,j
 	character car*1
 	
 	open(unit=5,file='BAC.csv')
-	
+	write(5,'(a)')"time,in_blood_alcohol,input_alcohol"
 	! tiempo inicial
 	t0=0.
 	! horas de simulacion
@@ -52,7 +52,7 @@
 	tabs= 20*60.
 	
 	!Caracteristicas de las consumiciones : v (volumen bebida) , g (graduacion) 
-   	!ti (tiempo de toma desde inicio simulacion), tf (tiempo en que el sujeto termina de beber)
+        !ti (tiempo de toma desde inicio simulacion), tf (tiempo en que el sujeto termina de beber)
 	!tesp (tiempo de espera despues de la bebida i), tconsum (tiempo de consumo, igual a tf - ti)
 	
 	v(1) = lata
@@ -66,19 +66,21 @@
 	v(2) = lata
 	g(2) = cerveza
 	ti(2) = tf(1)+tesp(1)
-	tf(2) = tf(1)+tesp(1)+20.*60.
-	tesp(2) = 5.
+	tf(2) = tf(1)+tesp(1)+50.*60.
+	tesp(2) = 15.
 	tesp(2) = tesp(2) * 60.
 	
 	v(3) = lata
 	g(3) = cerveza
 	ti(3) = tf(2)+tesp(2)
-	tf(3) = tf(2)+tesp(2)+50.*60.
-	tesp(3) = 5.
+	tf(3) = tf(2)+tesp(2)+30.*60.
+	tesp(3) = 35.
 	tesp(3) = tesp(3) * 60.
+	
 	
 	a=a0
 	t=t0
+
 	
 	do i=1,tfinal
 
@@ -86,11 +88,17 @@
 			st1=1.
 			st2=1.
 			
-			if(t-ti(j)-tabs.lt.0.) st1=  0.
+			if(t-ti(j)-tabs.lt.0.) st1 = 0.
 			if(t-tf(j)-tabs.lt.0.) st2 = 0.		
 			a=a+D*V(j)*g(j)*Cabsor/(Cs*M*(tf(j)-ti(j)))*(st1-st2)*dt
-		enddo	
-    
+			
+			st1=1.
+			st2=1.
+			if(t-ti(j).lt.0.) st1 = 0.
+			if(t-tf(j).lt.0.) st2 = 0.	
+			b=b+D*V(j)*g(j)*Cabsor/(Cs*M*(tf(j)-ti(j)))*(st1-st2)*dt
+		enddo
+		
 	t=t+dt
 	
 	if(a.le.0.) then
@@ -100,9 +108,11 @@
 	end if 
 	
 	if(a.le.0.) a=0.
-  	if(mod(i,100).eq.0)  print*, t,a
-	if(mod(i,100).eq.0)  write(5,'(f7.2,a,f9.4)')t,",",a
 	
+    	if(mod(i,1000).eq.0)  print*, t,a,b
+	if(mod(i,100).eq.0)  write(5,'(f7.2,a,f9.4,a,f9.4)')t/60,",",a,",",b
+	!if(mod(i,100).eq.0)  read(*,*)
+	b=0
 	enddo
 	
 	close(5)
