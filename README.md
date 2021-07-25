@@ -1,3 +1,3 @@
 # Cogorza
 
-A program to forecast BAC in bloodstream by assuming mass conservation equation.
+A program to predict BAC in bloodstream giving a set of drinks by assuming mass conservation.
