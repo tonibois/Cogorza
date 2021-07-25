@@ -27,7 +27,7 @@ A program to predict BAC in bloodstream giving a set of drinks by assuming mass 
 + time step integration, in seconds (by default, 1s)
 + start time of simulation (0 s by default)
 
-1. For each drink:
++ For each drink:
  1. Volumne ingested (in mL)
  2. Strenght of alcoholic drink (divided by 100, ej. beer of 5% graduation is 0.05)
  3. initial time of ingestion (in seconds since start time)
