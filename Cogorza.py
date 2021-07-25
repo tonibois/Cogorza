@@ -3,17 +3,8 @@
 ********           Source: A. Oliver (2021)       ********
 
  A program that predicts how BAC evolves with time given a set of drinks
-
-***************  LICENSE ********************************
-
-Permission is granted to anyone to use this software for any non commercial purpose on any computer system,
-and to redistribute it freely, subject to the following restrictions:
-
-1. The author is not responsible for the consequences of use of this software, no matter how awful, even if they arise from defects in it.
-2. The origin of this software must not be misrepresented, either by explicit claim or by omission.
-3. Altered versions must be plainly marked as such, and must not be misrepresented as being the original software.
-
-**********************************************************
+ 
+ *********************************************************
 '''
 
 import numpy as np
