@@ -19,17 +19,24 @@ A program to predict BAC in bloodstream giving a set of drinks by assuming mass 
 
 + In fortan folder, fortran source code examples are provided
 
-+ The "Ouput" folder, a set of output examples are presented as png files.
-
 + BACPY.csv is the output data file provided by running the program
-----
+
++ The "Ouput" folder, a set of output examples are presented as png files. Example:
 
 ![A test image](Outputs/Cogorza_2b.png)
 
+--- 
+
 ### Input parameters:
-### Run Cogorza:
+### How to run Cogorza:
 
-In CLI, just type "python Cogorza.py"
+To run it using python :
 
++ In CLI, just type "python Cogorza.py"
+
+To run using fortran: 
+
++ Compile source code on Linux: gfortran Cogorza.f95 -O Cogorza
++ Run generated executable file: ./Cogorza
 
 
