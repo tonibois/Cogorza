@@ -24,7 +24,7 @@ A program to predict BAC in bloodstream giving a set of drinks by assuming mass 
 + BACPY.csv is the output data file provided by running the program
 ----
 
-![A test image](Output/Cogorza_2b.png)
+![A test image](Outputs/Cogorza_2b.png)
 
 ### Input parameters:
 ### Run Cogorza:
