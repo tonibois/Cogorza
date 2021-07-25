@@ -1,4 +1,4 @@
-	PROGRAM COGORZASIM
+	PROGRAM COGORZA12
 	double precision t,a,D,R,M,V(20),g(20),tf(20),ti(20),st1,st2,dt,tabs,tesp(20),a0,t0,Cs,hsim
 	double precision lata,botella,botellin,cerveza,copa,martini,vino,absenta,whisky,medio_vaso,litro,b
 	integer i,tfinal,N,j
